@@ -118,7 +118,7 @@ RUN systemctl enable systemd-time-wait-sync.service
 RUN systemctl enable signal_detect_restart.timer
 
 # install go if not present
-HOST bash -c "go version || apt-get install -y golang git"
+HOST bash -c "go version || (apt-get update; apt-get install -y golang git)"
 
 # Compile and install rtlsdr_fcu
 HOST bash <<EOF

@@ -30,12 +30,9 @@ jobs:
       - name: Building BatRack.img
         run: sudo pimod/pimod.sh BatRack.Pifile
 
-      - name: Package RadioTracking.zip
-        run: zip RadioTracking.zip RadioTracking.img
-      - name: Package Sensorbox.zip
-        run: zip Sensorbox.zip Sensorbox.img
       - name: Package BatRack.zip
         run: zip BatRack.zip BatRack.img
+      
       - name: Create GitHub release
         id: create_release
         uses: actions/create-release@v1.0.0
@@ -46,26 +43,6 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: true
-      - name: Upload Sensorbox.zip to release
-        id: upload_sensorbox_zip
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Sensorbox.zip
-          asset_name: Sensorbox.zip
-          asset_content_type: application/zip
-      - name: Upload RadioTracking.zip to release
-        id: upload_radiotracking_zip
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: RadioTracking.zip
-          asset_name: RadioTracking.zip
-          asset_content_type: application/zip
       - name: Upload BatRack.zip to release
         id: upload_batrack_zip
         uses: actions/upload-release-asset@v1.0.1

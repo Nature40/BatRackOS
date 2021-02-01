@@ -5,9 +5,9 @@ services:
     privileged: true
     tty: true
     volumes:
-      - .:/sensorboxes
+      - .:/BatRackOS
       - ./pimod:/pimod
-    working_dir: /sensorboxes
+    working_dir: /BatRackOS
     environment:
       - PATH:'$PATH:/pimod'
       - IMG

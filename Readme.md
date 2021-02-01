@@ -1,16 +1,4 @@
-# Natur 4.0: Sensorboxes
-
-[![Build Status](https://travis-ci.org/Nature40/Sensorboxes-Images.svg?branch=master)](https://travis-ci.org/Nature40/Sensorboxes-Images)
-
-This repo collects software and hardware descriptions and links used in Natur 4.0 Sensorboxes. It contains distribution definitions (using pimod) and configuration files for sensorboxes.
-
-## Overview
-
-An installation currently consist of those parts:
-
- - [LiftSystem](https://github.com/Nature40/Satellite-LiftSystem): stateless ESP32 Board and Motor Driver to run the Lift
- - LiftBox: various Sensors, running up and down
- - PlanetBox: various sensors, Harddrive as data sink, LTE uplink
+# BatRack OS
 
 ## Configuration
 
