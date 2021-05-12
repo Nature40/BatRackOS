@@ -59,11 +59,11 @@ RUN tee -a /boot/config.txt <<<dtoverlay=i2c-rtc,ds3231
 RUN ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 # set git config for possible local commits
-RUN git config --global user.email "pi@tRackIT"
-RUN git config --global user.name "tRackIT User"
+RUN git config --global user.email "pi@BatRack"
+RUN git config --global user.name "BatRack User"
 
 # enable hostname-config script and set default hostname
-RUN bash -c 'CMDLINE=$(cat /boot/cmdline.txt); echo "${CMDLINE} -- systemd.hostname=tRackIT" > /boot/cmdline.txt'
+RUN bash -c 'CMDLINE=$(cat /boot/cmdline.txt); echo "${CMDLINE} -- systemd.hostname=BatRack" > /boot/cmdline.txt'
 RUN systemctl enable hostname-config.service
 
 # Enabling wait for time-sync.target (depending services will not start before the clock is synced)
@@ -158,4 +158,58 @@ RUN tee -a /etc/sysdweb.conf <<EOF
 [radiotracking]
 title = RadioTracking
 unit = radiotracking
+EOF
+
+### BatRack specific
+# Enable camera interaction 
+RUN raspi-config nonint do_camera 0
+
+# patch install file to omit sudo
+RUN sed -i "s/sudo //g" /home/pi/RPi_Cam_Web_Interface/install.sh
+
+# Install RPi_Cam_Web_Interface software (restore rc.local afterwards)
+RUN cp /etc/rc.local /etc/rc.local.bak
+RUN /home/pi/RPi_Cam_Web_Interface/install.sh q
+RUN cp /etc/rc.local.bak /etc/rc.local
+
+# Prepare raspimjpeg folders
+RUN mkdir -p /dev/shm/mjpeg
+RUN chown www-data:www-data /dev/shm/mjpeg
+RUN chmod 777 /dev/shm/mjpeg 
+
+# change apache port
+RUN sed -i "s/80/81/" /etc/apache2/ports.conf 
+RUN systemctl enable apache2
+
+# create bookmark and forward apache through caddy 
+RUN ln -s . /data/rpicam
+
+# Enable services and add to sysdweb
+RUN systemctl enable raspimjpeg.service
+RUN tee -a /etc/sysdweb.conf <<EOF
+
+[raspimjpeg]
+title = RaspiMJPEG
+unit = raspimjpeg
+EOF
+
+RUN systemctl enable raspiwebcam.service
+RUN tee -a /etc/sysdweb.conf <<EOF
+
+[raspiwebcam]
+title = RPi Cam Web Interface
+unit = raspiwebcam
+EOF
+
+# Install BatRack dependenies
+RUN apt-get install -y python3-numpy python3-pyaudio
+RUN python3 -m pip install -e /home/pi/BatRack
+
+# Enable BatRecorder
+RUN systemctl enable BatRack.service
+RUN tee -a /etc/sysdweb.conf <<EOF
+
+[BatRack]
+title = BatRack
+unit = BatRack
 EOF

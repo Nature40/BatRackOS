@@ -1,8 +1,7 @@
-FROM https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2020-08-24/2020-08-20-raspios-buster-arm64-lite.zip
+FROM https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-03-25/2021-03-04-raspios-buster-armhf-lite.zip
 PUMP 1000M
 
 # Update OS and sources
-RUN bash -c "echo y | rpi-update"
 RUN apt-get update
 
 # Install basic software
@@ -36,7 +35,7 @@ RUN apt-get update
 RUN apt-get install -y wireguard-tools
 
 # Install caddy
-RUN curl -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=arm64"
+RUN curl -o /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=arm"
 RUN chmod +x /usr/bin/caddy
 RUN groupadd --system caddy
 RUN useradd --system \

@@ -13,3 +13,9 @@
 [submodule "RadioTracking/home/pi/pymqttutil"]
 	path = home/pi/pymqttutil
 	url = https://github.com/Nature40/pymqttutil
+[submodule "home/pi/RPi_Cam_Web_Interface"]
+	path = home/pi/RPi_Cam_Web_Interface
+	url = https://github.com/silvanmelchior/RPi_Cam_Web_Interface
+[submodule "home/pi/BatRack"]
+	path = home/pi/BatRack
+	url = https://github.com/Nature40/BatRack.git

@@ -9,6 +9,10 @@
         reverse_proxy http://localhost:8050
     }
 
+    handle_path /rpicam/* {
+        reverse_proxy localhost:81
+    }
+
     file_server * browse {
         root /data/
     }
