@@ -6,6 +6,8 @@ After=network.target raspimjpeg.service raspiwebcam.service
 ExecStart=python3 -m batrack /boot/BatRack.conf
 Restart=always
 RestartSec=5
+User=pi
+Group=pi
 
 [Install]
 WantedBy=multi-user.target
