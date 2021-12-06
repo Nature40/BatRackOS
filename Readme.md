@@ -1,4 +1,5 @@
 # BatRack OS
+[![Build Images](https://github.com/Nature40/BatRackOS/actions/workflows/build_images.yml/badge.svg)](https://github.com/Nature40/BatRackOS/actions/workflows/build_images.yml)
 
 BatRack is a multi-sensor device that combines ultrasonic audio recordings, automatic radio telemetry, and video camera recordings in a single modular unit. BatRack facilitates the individual or combined scheduling of sensors and includes a mutual triggering mode. It consists of off-the-shelf hardware and both its hardware blueprints and the required software have been published under an open license to allow scientists and practitioners to replicate the system. 
 
