@@ -30,9 +30,9 @@ Files in this directory are loaded by mosquitto. E.g. mqtt brokers for reporting
 
 ## Scientific Usage & Citation
 
-If you are using BatRack OS in academia, we'd appreciate if you cited our [scientific research paper](https://jonashoechst.de/assets/papers/gottwald2021batrack.pdf).
+If you are using BatRack OS in academia, we'd appreciate if you cited our [scientific research paper](https://jonashoechst.de/assets/papers/gottwald2021batrack.pdf). Please cite as "Gottwald & Lampe et al."
 
-> J. Gottwald & P. Lampe et al., "BatRack: An open-source multi-sensor device for wildlife research," Methods in Ecology and Evolution, Jul. 2021.
+> J. Gottwald, P. Lampe, J. Höchst, N. Friess, J. Maier, L. Leister, B. Neumann, T. Richter, B. Freisleben, and T. Nauss, “BatRack: An open-source multi-sensor device for wildlife research,” Methods in Ecology and Evolution, Jul. 2021.
 
 ```bibtex
 @article{gottwald2021batrack,
